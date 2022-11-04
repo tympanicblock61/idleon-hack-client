@@ -26,13 +26,13 @@ credits:
   > helped me with gui and events kind of
   
   iBelg: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=45315
-	Tool release:	https://fearlessrevolution.com/viewtopic.php?p=199352#p199352
+  Tool release:	https://fearlessrevolution.com/viewtopic.php?p=199352#p199352
   > The creator of the console injection, designer of the cheats syntax as well as many cheats
   
-	salmon85: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=80266
+  salmon85: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=80266
   > Wipe inv, wipe forge and class lvl command
   
-	Creater0822: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=10529
+  Creater0822: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=10529
   Google Drive:   https://drive.google.com/drive/folders/1MyEkO0uNEpGx1VctMEKZ5sQiNzuSZv36?usp=sharing
   > For the remaining commands
   
