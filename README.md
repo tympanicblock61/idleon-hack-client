@@ -44,4 +44,22 @@ info:
   not all cheats have been ported and more will be in the future
   this is my personal project and not many people help me with it
   so its mostly me working on it.
+  # Compile instructions
+    Your first time installation of NodeJS:
+    1) Install NodeJS: 
+    2) npm install -g pkg
+    The package which lets you build executables. For each new major build, you'd have to reinstall pkg.
+
+    The building procedure:
+    0) Have the source file in a new folder and open Powershell there
+    1) npm init -y
+    Generates a package.json file
+    2) npm install -S child_process chrome-remote-interface atob btoa prompt
+    These are all the packages that iBelg's tool uses
+    3) Edit the json file, e.g. give it a name, version, don't forget to keep ibelg's name in the author section.
+    4) Check which node version you have if you don't know, by using the command: node -v
+    4) Inside "Scripts": {} add:
+    "build": "pkg main.js --targets node17-win-x64 --compress Brotli --output InjectMenuV1"
+    Or depending of what your major node version is, for example 14, you'd of course write node14-win-x64 instead.
+    5) Execute: npm run build
 ```
