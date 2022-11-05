@@ -19,8 +19,8 @@ catch(err){
     config = {unban:0, injreg:"\\w+\\.ApplicationMain\\s*?="};
 }
 // Tool initialization messages
-console.log("Tool version 1.1.3 by iBelg, forked by Creater0822");
-console.log('InjectCheatF4');
+console.log("Tool version 1.1.3 by iBelg, forked by Creater0822, forked again by tympanicblock61");
+console.log('InjectMenuV1');
 console.log('------------Tool Options------------');
 console.log(`Unban: ${config.unban}`);
 console.log(`Regex: ${config.injreg}`);
