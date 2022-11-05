@@ -877,7 +877,7 @@ function main() {
                 var e = eval(together)
                 popup(`${together} => ${JSON.stringify(e)}`, 30)
             }
-        } catch(error){ popup(`Error: ${err}`, 10)}
+        } catch(error){ popup(`Error: ${error}`, 10)}
     }
     function search(params) {
         var params = params[0].split(" ")
@@ -1006,9 +1006,9 @@ function main() {
 	build_button({name:"guildPoints", x:0, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:guildpoints})
     build_button({name:"killall", x:-90, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:killAll})
     build_button({name:"drop", x:-140, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"drop"}], drop]})
-    build_button({name:"spawn", x:-180, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"spawn"}], spawn]})
-	build_button({name:"search", x:-240, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"search"}], search]})
-    build_button({name:"chng", x:-280, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"chng"}], chng]})
+    build_button({name:"spawn", x:-185, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"spawn"}], spawn]})
+	build_button({name:"search", x:-245, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"search"}], search]})
+    build_button({name:"chng", x:-290, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"chng"}], chng]})
     console.log("finished building buttons")
 	console.log("Building keybinds")
     document.onkeydown = async function(e) {
