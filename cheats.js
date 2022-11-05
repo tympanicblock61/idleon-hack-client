@@ -98,7 +98,7 @@ window.onload = function() {
 	
 		}
 	}
-    setInterval(function() {if (!proxyDone) try{proxys.call(window.document.querySelector('iframe').contentWindow.__idleon_cheats__); console.log("Finished loading proxys")} catch() {}}, 10000)
+    setInterval(function() {if (!proxyDone) try{proxys.call(window.document.querySelector('iframe').contentWindow.__idleon_cheats__); console.log("Finished loading proxys")} catch(e) {}}, 10000)
 }
 
 function ChangeND(bEng, dim, KeyName, repl, elem){
