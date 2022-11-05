@@ -27,7 +27,7 @@ credits:
   
   iBelg: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=45315
   Tool release:	https://fearlessrevolution.com/viewtopic.php?p=199352#p199352
-  > The creator of the console injection, designer of the cheats syntax as well as many cheats
+  > The creator of the console injection, designer of the old cheats syntax as well as many cheats
   
   salmon85: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=80266
   > Wipe inv, wipe forge and class lvl command
