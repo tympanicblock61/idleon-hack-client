@@ -848,27 +848,26 @@ function main() {
         wait_till()
     }
     function search(params) {
-        var params = params[0]
-        const queryX 		= params.slice(1) && params.slice(1).length ? params.slice(1).join(' ').toLowerCase() : undefined
+        const queryX 		= params[0].slice(1) && params[0].slice(1).length ? params[0].slice(1).join(' ').toLowerCase() : undefined
         const bEngine 		= this["com.stencyl.Engine"].engine
         const itemDefs 		= this["scripts.ItemDefinitions"].itemDefs.h
         const ItemVals		= [[],[]]
         const searchVals 	= []
         if(queryX){
-            if(params[0] === "item"){
+            if(params[0][0] === "item"){
                 searchVals.push("Id, Item")
                 for(const [key, value] of Object.entries(itemDefs)){
                     const valName = value.h.displayName.replace(/_/g, ' ').toLowerCase()
                     if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
                 }
-            } else if(params[0] === "monster"){
+            } else if(params[0][0] === "monster"){
                 searchVals.push("Id, Monster")
                 const monsterDefs 	= this["scripts.MonsterDefinitions"].monsterDefs.h
                 for (const [key, value] of Object.entries(monsterDefs)) {
                     const valName = value.h["Name"].replace(/_/g, ' ').toLowerCase()
                     if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
                 }
-            } else if(params[0] === "talent"){
+            } else if(params[0][0] === "talent"){
                 searchVals.push("Order, Id, Talent")
                 const talentDefs 	= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentIconNames"]
                 const Order 		= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentOrder"]
@@ -876,7 +875,7 @@ function main() {
                     const valName = talentDefs[Order[i]].replace(/_/g, ' ').toLowerCase()
                     if (valName.includes(queryX)) searchVals.push(`${i} - ${Order[i]} - ${valName}`)
                 }
-            } else if(params[0] === "smith"){
+            } else if(params[0][0] === "smith"){
                 searchVals.push("Tab, Id, ItemId, ItemName")
                 const ItemToCraftNAME = bEngine.getGameAttribute("CustomLists").h["ItemToCraftNAME"]
                 for(const [key, value] of Object.entries(itemDefs)){
