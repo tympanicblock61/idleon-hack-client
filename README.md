@@ -39,3 +39,9 @@ credits:
   tympanicblock61: https://fearlessrevolution.com/memberlist.php?mode=viewprofile&u=110004
   > creator of rest of the cheats and gui, events logger, keybinds, custom prompt, custom alert
 ```
+```
+info:
+  not all cheats have been ported and more will be in the future
+  this is my personal project and not many people help me with it
+  so its mostly me working on it.
+```
