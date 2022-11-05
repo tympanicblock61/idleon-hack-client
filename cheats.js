@@ -847,6 +847,38 @@ function main() {
         }
         wait_till()
     }
+    function chng(params) {
+        var params = params[0].split(" ")
+        const CList = this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h
+        const bEngine = this["com.stencyl.Engine"].engine
+        const itemDefs = this["scripts.ItemDefinitions"].itemDefs.h
+        const actorEvents189 = this["scripts.ActorEvents_189"]
+        const monsterDefs = this["scripts.MonsterDefinitions"].monsterDefs.h
+        const ActorEvents124 = this["scripts.ActorEvents_124"]
+        try {
+            const character = bEngine.getGameAttribute("OtherPlayers").h[bEngine.getGameAttribute("UserInfo")[0]]
+            var x = character.getXCenter()
+            var y = character.getValue("ActorEvents_20", "_PlayerNode")
+        } catch(error) {}
+        try{
+            if (params.length === 1) {
+                var e = eval(params[0])
+                popup(`${params[0]} => ${JSON.stringify(e)}`, 30)
+            }
+            else {
+                var together = ''
+                for (var i=0; i<params.length; i++) {
+                    if (i !== params.length) {
+                        together += params[i]+" "
+                    } else {
+                        together += params[i]
+                    }
+                }
+                var e = eval(together)
+                popup(`${together} => ${JSON.stringify(e)}`, 30)
+            }
+        } catch(error){ popup(`Error: ${err}`, 10)}
+    }
     function search(params) {
         const queryX 		= params.slice(0) && params.slice(0).length ? params.slice(0).join(' ').toLowerCase() : undefined
         const bEngine 		= this["com.stencyl.Engine"].engine
