@@ -917,9 +917,9 @@ function main() {
                 }
                 for(h=0; h < ItemVals.length; h++) for(i=0; i < ItemToCraftNAME.length; i++) for(j=0; j < ItemToCraftNAME[i].length; j++)
                     if (ItemVals[h][0] == ItemToCraftNAME[i][j]) searchVals.push(`${i+i}, ${j}, ${ItemVals[h][0]}, ${ItemVals[h][1]}`)
-            } else return "Invalid sub-command! Valid ones are:\n item\n monster\n talent\n smith"
-            if (searchVals.length > 0) return searchVals.join('\n')
-            else return `No info found for '${queryX}'`
+            } else popup("Invalid sub-command! Valid ones are:\n item\n monster\n talent\n smith", 10)
+            if (searchVals.length > 0) popup(searchVals.join('\n'), 10)
+            else popup(`No info found for '${queryX}'`, 10)
         }
     }
     function spawn(param) {
