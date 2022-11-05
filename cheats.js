@@ -98,7 +98,7 @@ window.onload = function() {
 	
 		}
 	}
-    setInterval(function() {if (!proxyDone) try{proxys.call(window.document.querySelector('iframe').contentWindow.__idleon_cheats__); console.log("Finished loading proxys")} catch(e) {console.log(e)}}, 10000)
+    setInterval(function() {if (!proxyDone) try{proxys.call(window.document.querySelector('iframe').contentWindow.__idleon_cheats__); console.log("Finished loading proxys")} catch() {}}, 10000)
 }
 
 function ChangeND(bEng, dim, KeyName, repl, elem){
@@ -848,6 +848,7 @@ function main() {
         wait_till()
     }
     function search(params) {
+        var params = params[0]
         const queryX 		= params.slice(1) && params.slice(1).length ? params.slice(1).join(' ').toLowerCase() : undefined
         const bEngine 		= this["com.stencyl.Engine"].engine
         const itemDefs 		= this["scripts.ItemDefinitions"].itemDefs.h
@@ -974,7 +975,7 @@ function main() {
     build_button({name:"killall", x:-90, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:killAll})
     build_button({name:"drop", x:-140, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"drop"}], drop]})
     build_button({name:"spawn", x:-190, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"spawn"}], spawn]})
-	build_button({name:"search", x:-220, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"search"}, search]]})
+	build_button({name:"search", x:-250, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"search"}], search]})
     console.log("finished building buttons")
 	console.log("Building keybinds")
     document.onkeydown = async function(e) {
