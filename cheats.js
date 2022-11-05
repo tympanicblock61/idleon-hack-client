@@ -848,45 +848,45 @@ function main() {
         wait_till()
     }
     function search(params) {
-        const queryX 		= params[0].slice(1) && params[0].slice(1).length ? params[0].slice(1).join(' ').toLowerCase() : undefined
+        const queryX 		= params.slice(0) && params.slice(0).length ? params.slice(0).join(' ').toLowerCase() : undefined
         const bEngine 		= this["com.stencyl.Engine"].engine
         const itemDefs 		= this["scripts.ItemDefinitions"].itemDefs.h
         const ItemVals		= [[],[]]
         const searchVals 	= []
         if(queryX){
-            if(params[0][0] === "item"){
+            if(params[0].toLowerCase().startsWith("item")){
                 searchVals.push("Id, Item")
                 for(const [key, value] of Object.entries(itemDefs)){
                     const valName = value.h.displayName.replace(/_/g, ' ').toLowerCase()
-                    if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
+                    if (valName.includes(queryX.split(" ")[1])) searchVals.push(`${key} - ${valName}`)
                 }
-            } else if(params[0][0] === "monster"){
+            } else if(params[0].toLowerCase().startsWith("monster")){
                 searchVals.push("Id, Monster")
                 const monsterDefs 	= this["scripts.MonsterDefinitions"].monsterDefs.h
                 for (const [key, value] of Object.entries(monsterDefs)) {
                     const valName = value.h["Name"].replace(/_/g, ' ').toLowerCase()
-                    if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
+                    if (valName.includes(queryX.split(" ")[1])) searchVals.push(`${key} - ${valName}`)
                 }
-            } else if(params[0][0] === "talent"){
+            } else if(params[0].toLowerCase().startsWith("talent")){
                 searchVals.push("Order, Id, Talent")
                 const talentDefs 	= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentIconNames"]
                 const Order 		= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentOrder"]
                 for(var i=0; i < Order.length; i++){
                     const valName = talentDefs[Order[i]].replace(/_/g, ' ').toLowerCase()
-                    if (valName.includes(queryX)) searchVals.push(`${i} - ${Order[i]} - ${valName}`)
+                    if (valName.includes(queryX.split(" ")[1])) searchVals.push(`${i} - ${Order[i]} - ${valName}`)
                 }
-            } else if(params[0][0] === "smith"){
+            } else if(params[0].toLowerCase().startsWith("smith")){
                 searchVals.push("Tab, Id, ItemId, ItemName")
                 const ItemToCraftNAME = bEngine.getGameAttribute("CustomLists").h["ItemToCraftNAME"]
                 for(const [key, value] of Object.entries(itemDefs)){
                     const valName = value.h.displayName.replace(/_/g, ' ').toLowerCase()
-                    if (valName.includes(queryX)) ItemVals.push([key,valName])
+                    if (valName.includes(queryX.split(" ")[1])) ItemVals.push([key,valName])
                 }
                 for(h=0; h < ItemVals.length; h++) for(i=0; i < ItemToCraftNAME.length; i++) for(j=0; j < ItemToCraftNAME[i].length; j++)
                     if (ItemVals[h][0] == ItemToCraftNAME[i][j]) searchVals.push(`${i+i}, ${j}, ${ItemVals[h][0]}, ${ItemVals[h][1]}`)
-            } else popup("Invalid sub-command! Valid ones are:\n item\n monster\n talent\n smith")
-            if (searchVals.length > 0) popup(searchVals.join('\n'))
-            else popup(`No info found for '${queryX}'`)
+            } else popup("Invalid sub-command! Valid ones are:\n item\n monster\n talent\n smith", 10)
+            if (searchVals.length > 0) popup(searchVals.join('\n'), 10)
+            else popup(`No info found for '${queryX.split(" ")[1]}'`, 10)
         }
     }
     function spawn(param) {
