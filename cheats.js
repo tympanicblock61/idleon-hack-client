@@ -847,6 +847,48 @@ function main() {
         }
         wait_till()
     }
+    function search(params) {
+        const queryX 		= params.slice(1) && params.slice(1).length ? params.slice(1).join(' ').toLowerCase() : undefined
+        const bEngine 		= this["com.stencyl.Engine"].engine
+        const itemDefs 		= this["scripts.ItemDefinitions"].itemDefs.h
+        const ItemVals		= [[],[]]
+        const searchVals 	= []
+        if(queryX){
+            if(params[0] === "item"){
+                searchVals.push("Id, Item")
+                for(const [key, value] of Object.entries(itemDefs)){
+                    const valName = value.h.displayName.replace(/_/g, ' ').toLowerCase()
+                    if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
+                }
+            } else if(params[0] === "monster"){
+                searchVals.push("Id, Monster")
+                const monsterDefs 	= this["scripts.MonsterDefinitions"].monsterDefs.h
+                for (const [key, value] of Object.entries(monsterDefs)) {
+                    const valName = value.h["Name"].replace(/_/g, ' ').toLowerCase()
+                    if (valName.includes(queryX)) searchVals.push(`${key} - ${valName}`)
+                }
+            } else if(params[0] === "talent"){
+                searchVals.push("Order, Id, Talent")
+                const talentDefs 	= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentIconNames"]
+                const Order 		= this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h["TalentOrder"]
+                for(var i=0; i < Order.length; i++){
+                    const valName = talentDefs[Order[i]].replace(/_/g, ' ').toLowerCase()
+                    if (valName.includes(queryX)) searchVals.push(`${i} - ${Order[i]} - ${valName}`)
+                }
+            } else if(params[0] === "smith"){
+                searchVals.push("Tab, Id, ItemId, ItemName")
+                const ItemToCraftNAME = bEngine.getGameAttribute("CustomLists").h["ItemToCraftNAME"]
+                for(const [key, value] of Object.entries(itemDefs)){
+                    const valName = value.h.displayName.replace(/_/g, ' ').toLowerCase()
+                    if (valName.includes(queryX)) ItemVals.push([key,valName])
+                }
+                for(h=0; h < ItemVals.length; h++) for(i=0; i < ItemToCraftNAME.length; i++) for(j=0; j < ItemToCraftNAME[i].length; j++)
+                    if (ItemVals[h][0] == ItemToCraftNAME[i][j]) searchVals.push(`${i+i}, ${j}, ${ItemVals[h][0]}, ${ItemVals[h][1]}`)
+            } else popup("Invalid sub-command! Valid ones are:\n item\n monster\n talent\n smith")
+            if (searchVals.length > 0) popup(searchVals.join('\n'))
+            else popup(`No info found for '${queryX}'`)
+        }
+    }
     function spawn(param) {
         var params = param[0].split(" ")
         const bEngine = this["com.stencyl.Engine"].engine
@@ -932,7 +974,8 @@ function main() {
     build_button({name:"killall", x:-90, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:killAll})
     build_button({name:"drop", x:-140, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"drop"}], drop]})
     build_button({name:"spawn", x:-190, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"spawn"}], spawn]})
-	console.log("finished building buttons")
+	build_button({name:"search", x:-220, y:31, backColor:"black", txtColor:"white", fontSize:10, area:"cheats-main", func:customPrompt, params:[[{type:"text", text:"search"}, search]]})
+    console.log("finished building buttons")
 	console.log("Building keybinds")
     document.onkeydown = async function(e) {
 		for (var i=0; i<keybinds.length; i++) {
