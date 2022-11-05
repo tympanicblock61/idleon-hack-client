@@ -19,6 +19,7 @@ working on:
   shop edit x
   event logger 🗸
   Chat console x
+  name spoof x
 ```
 ```
 credits:
