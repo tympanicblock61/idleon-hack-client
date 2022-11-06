@@ -850,7 +850,7 @@ function main() {
     function chng(params) {
         var params = params[0].split(" ")
         const CList = this["com.stencyl.Engine"].engine.getGameAttribute("CustomLists").h
-        const bEngine = this["com.stencyl.Engine"].engine
+        const bEngine = this["com.stencyl.Engine"].engine.getGameAttribute("UserInfo")
         const itemDefs = this["scripts.ItemDefinitions"].itemDefs.h
         const actorEvents189 = this["scripts.ActorEvents_189"]
         const monsterDefs = this["scripts.MonsterDefinitions"].monsterDefs.h
@@ -862,7 +862,7 @@ function main() {
         } catch(error) {}
         try{
             if (params.length === 1) {
-                var e = eval(params[0])
+                var e = this.eval(params[0])
                 popup(`${params[0]} => ${JSON.stringify(e)}`, 30)
             }
             else {
@@ -874,7 +874,7 @@ function main() {
                         together += params[i]
                     }
                 }
-                var e = eval(together)
+                var e = this.eval(together)
                 popup(`${together} => ${JSON.stringify(e)}`, 30)
             }
         } catch(error){ popup(`Error: ${error}`, 10)}
@@ -1031,3 +1031,31 @@ function main() {
 	testDone = true
 }
 
+UserInfo
+GetPlayersUsernames
+PlayerDATABASE
+
+function skillsMaxLevel(lvl) {
+    const bEngine = this["com.stencyl.Engine"].engine
+    var skilllvlsMax = bEngine.getGameAttribute("SkillLevelsMAX")
+    for (var i=0; i<skilllvlsMax.length; i++) {
+        if (skilllvlsMax[i] !== -1) {
+            skilllvlsMax[i] = lvl
+        }
+    }
+}
+for (var i=0; i<this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX").length; i++) {if (this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX")[i] !== -1) {this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX")[i] = 999}}
+
+function nameSpoof(name) {
+    const bEngine = this["com.stencyl.Engine"].engine.getGameAttribute("PlayerDATABASE").h.gamer_of_awesom
+    const oldName = bEngine.getGameAttribute("UserInfo")[0]
+    var playerNames = bEngine.getGameAttribute("GetPlayersUsernames")
+    bEngine.getGameAttribute("UserInfo")[0]=name
+    for (var i=0; i<playerNames.length; i++) {
+        if (playerNames[i] === oldName) {
+            playerNames[i] = name
+        }
+    }
+    bEngine.getGameAttribute("PlayerDATABASE").h[name]=this["com.stencyl.Engine"].engine.getGameAttribute("PlayerDATABASE").h[oldName]
+    delete bEngine.getGameAttribute("PlayerDATABASE").h[oldName]
+}
