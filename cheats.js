@@ -1031,9 +1031,12 @@ function main() {
 	testDone = true
 }
 
-UserInfo
-GetPlayersUsernames
-PlayerDATABASE
+//UserInfo
+//GetPlayersUsernames
+//PlayerDATABASE
+//QuestHelperMenu
+//HintStatus
+//CustomMaps > CensorShip
 
 function skillsMaxLevel(lvl) {
     const bEngine = this["com.stencyl.Engine"].engine
@@ -1044,7 +1047,16 @@ function skillsMaxLevel(lvl) {
         }
     }
 }
-for (var i=0; i<this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX").length; i++) {if (this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX")[i] !== -1) {this["com.stencyl.Engine"].engine.getGameAttribute("SkillLevelsMAX")[i] = 999}}
+
+function skillLevels(lvl) {
+    const bEngine = this["com.stencyl.Engine"].engine
+    var skillLevels = bEngine.getGameAttribute("SkillLevels")
+    for (var i=0; i<skillLevels.length; i++) {
+        if (skillLevels[i] !== 0) {
+            skillLevels[i] = lvl
+        }
+    }
+}
 
 function nameSpoof(name) {
     const bEngine = this["com.stencyl.Engine"].engine.getGameAttribute("PlayerDATABASE").h.gamer_of_awesom
@@ -1057,5 +1069,4 @@ function nameSpoof(name) {
         }
     }
     bEngine.getGameAttribute("PlayerDATABASE").h[name]=this["com.stencyl.Engine"].engine.getGameAttribute("PlayerDATABASE").h[oldName]
-    delete bEngine.getGameAttribute("PlayerDATABASE").h[oldName]
 }
